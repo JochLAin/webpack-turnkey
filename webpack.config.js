@@ -83,7 +83,11 @@ const configify = (filepath) => {
     const filename = filepath.slice(index + 1);
     const page_dir = filepath.slice(filepath.indexOf('pages') + 6, index);
     let web_dir = 'web/js';
-    if (REGEX_SRC.test(filepath)) web_dir = `web/bundles/${filepath.match(REGEX_SRC)[1].replace(/\//g, '_').toLowerCase()}/js`;
+    if (REGEX_SRC.test(filepath)) web_dir = `web/bundles/${
+        filepath.match(REGEX_SRC)[1]
+            .replace(/\//g, '_')
+            .toLowerCase()
+    }/js`;
     const build_dir = path.resolve(__dirname, web_dir, page_dir);
     return {
         entry: filepath,
