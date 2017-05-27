@@ -2,11 +2,15 @@
 
 const fs = require('fs');
 const path = require('path');
+
+// Default aliases to folders
 const ALIASES = [
     'actions', 'components', 'connecters', 'containers', 'reducers',
     'constants', 'middlewares', 'pages', 'stylesheets', 'utils',
     'fonts', 'images', // 'sounds', 'videos'
 ];
+
+// Default configuration overrided by entry, output and alias after
 const CONFIG = {
     module: {
         rules: [
@@ -37,7 +41,17 @@ const CONFIG = {
     }
 };
 
+// Regexp to know if it's a script which is in bundle fodler
 const REGEX_SRC = /src\/([\w\/]+)Bundle/;
+
+/**
+ * Create aliases for folder in ALIASES variables if they exists
+ * Alias format : <bundle_name>.<alias>
+ * If it's app folder only <alias>
+ * 
+ * @param array<string> bundles
+ * @return array<string> aliases
+ */
 const aliasify = (bundles) => {
     let aliases = {};
     bundles.forEach(bundle => {
@@ -57,6 +71,13 @@ const aliasify = (bundles) => {
     });
     return aliases;
 };
+
+/**
+ * Configure entry and output with path of the entry
+ * 
+ * @param string filepath : Path to entry file
+ * @return object config : Contained entry and output field
+ */
 const configify = (filepath) => {
     const index = filepath.lastIndexOf('/');
     const filename = filepath.slice(index + 1);
@@ -72,6 +93,14 @@ const configify = (filepath) => {
         },
     };
 }
+
+/**
+ * Browse all files in a folder
+ * 
+ * @param string filename : path to browse
+ * @param boolean folders : specify if folders must be included
+ * @return array<string> files : array of files (and folders ?) in filename path
+ */
 const browse = (filename, folders = false) => {
     if (!fs.existsSync(filename)) return [];
     let stat = fs.lstatSync(filename);
@@ -84,6 +113,13 @@ const browse = (filename, folders = false) => {
     } else if (stat.isFile()) return [filename];
     return [];
 };
+
+/**
+ * Browse all files in each bundles
+ * 
+ * @param array<string> bundles : pathes to bundles
+ * @return array<string> pathes : pathes to scripts into bundles 
+ */
 const entrify = (bundles) => {
     const { WEBPACK_ENTRY } = process.env;
     const index = WEBPACK_ENTRY ? WEBPACK_ENTRY.indexOf('/') : undefined;
@@ -96,18 +132,30 @@ const entrify = (bundles) => {
         .forEach(files => config.push(...files));
     return config;
 };
+
+/**
+ * Search specific pattern into folder
+ * 
+ * @param string/regexp name : pattern to search
+ * @param string folder : folder in which to search
+ */
 const search = (name = '', folder = '') => {
     const files = browse(path.resolve(__dirname, folder), true);
     const REGEX_SRC = new RegExp(name);
     return files.filter(filename => REGEX_SRC.test(filename));
 };
 
+// Find all bundles which are not in vendor folder
 const bundles = search('^((?!vendor).)*src\/[\\w\/]+Resources$');
+// Append app/Resources folder
 bundles.push('app/Resources');
 
+// Retrieve scripts into bundles
 const entries = entrify(bundles);
+// Create aliases
 const aliases = aliasify(bundles);
 
+// Create config for each script files and override with default config and aliases
 const configs = module.exports = entries.map(entry => configify(entry))
     .map(entry => Object.assign({}, CONFIG, entry))
     .map(entry => Object.assign({}, entry, {
