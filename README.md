@@ -23,6 +23,8 @@ It can be a file or a folder.
 
 You can also work with absolute path and retrieve your file into `web/js/${path}`.
 
+*Example: `WEBPACK_ENTRY="homepage.jsx" npm run dev`*
+
 ## Requirements
 
 Webpack 2
