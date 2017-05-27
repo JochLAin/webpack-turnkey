@@ -5,9 +5,8 @@ const path = require('path');
 const ALIASES = [
     'actions', 'components', 'connecters', 'containers', 'reducers',
     'constants', 'middlewares', 'pages', 'stylesheets', 'utils',
-    'images', 'sounds', 'videos'
+    'fonts', 'images', // 'sounds', 'videos'
 ];
-
 const CONFIG = {
     module: {
         rules: [
@@ -30,7 +29,7 @@ const CONFIG = {
     resolve: {
         extensions: [
             '.js', '.jsx',
-            '.scss', '.less', '.css', 
+            '.scss', '.less', '.css',
             '.svg', '.png', '.jpg', '.jpeg', '.gif',
             '.html',
             '.woff', '.woff2', '.otf', '.ttf', '.eot',
@@ -38,10 +37,8 @@ const CONFIG = {
     }
 };
 
-
-const REGEX_SRC = new RegExp(`/${__dirname}src\/([\\w\/]+)Bundle/`);
-
-const aliasify = module.exports = (bundles) => {
+const REGEX_SRC = /src\/([\w\/]+)Bundle/;
+const aliasify = (bundles) => {
     let aliases = {};
     bundles.forEach(bundle => {
         if (REGEX_SRC.test(bundle)) {
@@ -60,13 +57,13 @@ const aliasify = module.exports = (bundles) => {
     });
     return aliases;
 };
-const assign = (filepath) => {
+const configify = (filepath) => {
     const index = filepath.lastIndexOf('/');
     const filename = filepath.slice(index + 1);
     const page_dir = filepath.slice(filepath.indexOf('pages') + 6, index);
     let web_dir = 'web/js';
-    if (REGEX_SRC.test(filepath)) web_dir = `web/bundles/${filepath.match(REGEX_SRC)[1].replace(/\//g, '_').toLowerCase()}`;
-    const build_dir = path.resolve(__dirname, '../..', web_dir, page_dir);
+    if (REGEX_SRC.test(filepath)) web_dir = `web/bundles/${filepath.match(REGEX_SRC)[1].replace(/\//g, '_').toLowerCase()}/js`;
+    const build_dir = path.resolve(__dirname, web_dir, page_dir);
     return {
         entry: filepath,
         output: {
@@ -109,10 +106,10 @@ const bundles = search('^((?!vendor).)*src\/[\\w\/]+Resources$');
 bundles.push('app/Resources');
 
 const entries = entrify(bundles);
-const alias = aliasify(bundles);
+const aliases = aliasify(bundles);
 
-const configs = module.exports = entries.map(entry => assign(entry))
+const configs = module.exports = entries.map(entry => configify(entry))
     .map(entry => Object.assign({}, CONFIG, entry))
     .map(entry => Object.assign({}, entry, {
-        resolve: Object.assign({}, entry.resolve, { alias: Object.assign({}, entry.resolve.alias, alias) })
+        resolve: Object.assign({}, entry.resolve, { alias: Object.assign({}, entry.resolve.alias, aliases) })
     }));
