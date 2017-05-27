@@ -29,4 +29,4 @@ You can also work with absolute path and retrieve your file into `web/js/${path}
 
 Webpack 2
 
-## Enjoy !
+## Enjoy !
