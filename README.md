@@ -10,7 +10,7 @@ Creates an alias for all folders contained in the 'ALIASES' variable that are lo
 
 Scripts which are in `app/Resources/pages` folder are bundled into `web/js`.
 
-Scripts which are in `src/(.*)Bundle/Resources/pages` folder are bundled into `web/bundle/$1`.
+Scripts which are in `src/(.*)Bundle/Resources/pages` folder are bundled into `web/bundles/$1/js`.
 
 __Bundle name is slugify like `bin/console assets:install` does.__
 
@@ -30,3 +30,5 @@ You can also work with absolute path and retrieve your file into `web/js/${path}
 Webpack 2
 
 ## Enjoy !
+
+Libre à vous de le modifier à votre convenance.
