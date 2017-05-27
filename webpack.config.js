@@ -10,7 +10,7 @@ const ALIASES = [
     'fonts', 'images', // 'sounds', 'videos'
 ];
 
-// Default configuration overrided by entry, output and alias after
+// Default configuration overloaded by entry, output and alias after
 const CONFIG = {
     module: {
         rules: [
@@ -41,13 +41,13 @@ const CONFIG = {
     }
 };
 
-// Regexp to know if it's a script which is in bundle fodler
+// Regexp to know if it's a script which is in bundle folder
 const REGEX_SRC = /src\/([\w\/]+)Bundle/;
 
 /**
- * Create aliases for folder in ALIASES variables if they exists
- * Alias format : <bundle_name>.<alias>
- * If it's app folder only <alias>
+ * Creates aliases for folder in ALIASES variables if they exists
+ * Alias format : @<bundle_name>.<alias>
+ * If it's app folder only @<alias>
  * 
  * @param array<string> bundles
  * @return array<string> aliases
@@ -73,7 +73,7 @@ const aliasify = (bundles) => {
 };
 
 /**
- * Configure entry and output with path of the entry
+ * Configures entry and output with path of the entry
  * 
  * @param string filepath : Path to entry file
  * @return object config : Contained entry and output field
@@ -95,7 +95,7 @@ const configify = (filepath) => {
 }
 
 /**
- * Browse all files in a folder
+ * Browses all files in a folder
  * 
  * @param string filename : path to browse
  * @param boolean folders : specify if folders must be included
@@ -115,7 +115,7 @@ const browse = (filename, folders = false) => {
 };
 
 /**
- * Browse all files in each bundles
+ * Browses all files in each bundles
  * 
  * @param array<string> bundles : pathes to bundles
  * @return array<string> pathes : pathes to scripts into bundles 
@@ -134,7 +134,7 @@ const entrify = (bundles) => {
 };
 
 /**
- * Search specific pattern into folder
+ * Searches for a specific pattern into folder
  * 
  * @param string/regexp name : pattern to search
  * @param string folder : folder in which to search
@@ -147,15 +147,15 @@ const search = (name = '', folder = '') => {
 
 // Find all bundles which are not in vendor folder
 const bundles = search('^((?!vendor).)*src\/[\\w\/]+Resources$');
-// Append app/Resources folder
+// Appends app/Resources folder
 bundles.push('app/Resources');
 
-// Retrieve scripts into bundles
+// Retrieves scripts into bundles
 const entries = entrify(bundles);
-// Create aliases
+// Creates aliases
 const aliases = aliasify(bundles);
 
-// Create config for each script files and override with default config and aliases
+// Creates config for each script files and overloads with default configuration and aliases
 const configs = module.exports = entries.map(entry => configify(entry))
     .map(entry => Object.assign({}, CONFIG, entry))
     .map(entry => Object.assign({}, entry, {
