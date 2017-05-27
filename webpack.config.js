@@ -3,14 +3,14 @@
 const fs = require('fs');
 const path = require('path');
 
-// Default aliases to folders
+// Default folder aliased
 const ALIASES = [
     'actions', 'components', 'connecters', 'containers', 'reducers',
     'constants', 'middlewares', 'pages', 'stylesheets', 'utils',
     'fonts', 'images', // 'sounds', 'videos'
 ];
 
-// Default configuration overloaded by entry, output and alias after
+// Default configuration overloaded with entry, output and alias
 const CONFIG = {
     module: {
         rules: [
@@ -99,7 +99,7 @@ const configify = (filepath) => {
  * 
  * @param string filename : path to browse
  * @param boolean folders : specify if folders must be included
- * @return array<string> files : array of files (and folders ?) in filename path
+ * @return array<string> pathes : array of pathes in filename
  */
 const browse = (filename, folders = false) => {
     if (!fs.existsSync(filename)) return [];
@@ -147,7 +147,7 @@ const search = (name = '', folder = '') => {
 
 // Find all bundles which are not in vendor folder
 const bundles = search('^((?!vendor).)*src\/[\\w\/]+Resources$');
-// Appends app/Resources folder
+// Appends app/Resources bundle
 bundles.push('app/Resources');
 
 // Retrieves scripts into bundles
@@ -155,9 +155,13 @@ const entries = entrify(bundles);
 // Creates aliases
 const aliases = aliasify(bundles);
 
-// Creates config for each script files and overloads with default configuration and aliases
+// Creates config for each script files
 const configs = module.exports = entries.map(entry => configify(entry))
+    // Overloads with default configuration
     .map(entry => Object.assign({}, CONFIG, entry))
+    // Overloads with aliases
     .map(entry => Object.assign({}, entry, {
-        resolve: Object.assign({}, entry.resolve, { alias: Object.assign({}, entry.resolve.alias, aliases) })
+        resolve: Object.assign({}, entry.resolve, { 
+            alias: Object.assign({}, entry.resolve.alias, aliases) 
+        })
     }));
