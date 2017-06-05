@@ -23,7 +23,15 @@ It can be a file or a folder.
 
 You can also work with absolute path and retrieve your file into `web/js/${path}`.
 
-*Example: `WEBPACK_ENTRY="homepage.jsx" npm run dev`*
+*Examples:*
+
+- *`WEBPACK_ENTRY="game" npm run dev`* => _app/Resources/pages/game/*_
+- *`WEBPACK_ENTRY="homepage.jsx" npm run dev`* => _app/Resources/pages/homepage.jsx_
+- *`WEBPACK_ENTRY="profile/index.jsx" npm run dev`* => _app/Resources/pages/profile/index.jsx_
+- *`WEBPACK_ENTRY="@AppBundle" npm run dev`* => _src/AppBundle/Resources/pages/*_
+- *`WEBPACK_ENTRY="@App/BlogBundle" npm run dev`* => _src/App/BlogBundle/Resources/pages/*_
+- *`WEBPACK_ENTRY="@App/BlogBundle/homepage.jsx" npm run dev`* => _src/App/BlogBundle/Resources/pages/homepage.jsx_
+- *`WEBPACK_ENTRY="@App/BlogBundle/article/view.jsx" npm run dev`* => _src/App/BlogBundle/Resources/pages/article/view.jsx_
 
 ## Requirements
 
