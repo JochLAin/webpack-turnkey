@@ -12,6 +12,13 @@ You can override directory with environment variable:
 - PUBLIC_DIR: absolute path to public folder _(ex: '/home/project/public')_
 - OUTPUT_DIR: folder name between public directory and page path _(ex: 'js')_
 
+### Install
+
+- `npm i -S git+https://git@github.com:JochLAin/webpack-symfony.git`
+- Update package.json scripts section with:
+    - "dev": "webpack-symfony"
+    - "prod": "NODE_ENV="prod" webpack-symfony"
+
 ### Work with WEBPACK_ENTRY environment variable
 
 The value of this variable is, by default, a relative path, from `assets/pages/`.
