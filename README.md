@@ -12,7 +12,7 @@ You can override directory with environment variable:
 - PUBLIC_DIR: absolute path to public folder _(ex: '/home/project/public')_
 - OUTPUT_DIR: folder name between public directory and page path _(ex: 'js')_
 
-### Install
+### Install
 
 - `npm i -S git+https://git@github.com:JochLAin/webpack-symfony.git`
 - Update package.json scripts section with:
