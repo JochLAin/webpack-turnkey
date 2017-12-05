@@ -1,42 +1,28 @@
-# Webpack configuration file for Symfony project
+# webpack-symfony
 
-You can override default options in __CONFIG__ variable.
+## Webpack configuration file for Symfony project
 
-You can add or remove aliases in __ALIASES__ variable.
+### How it works
 
-## How it works
+Scripts which are in `assets/pages` folder are bundled into `public/js`.
 
-Creates an alias for all folders contained in the 'ALIASES' variable that are located in the 'Resources' folders, if they exist..
+You can override directory with environment variable:
 
-Scripts which are in `app/Resources/pages` folder are bundled into `web/js`.
+- PAGE_DIR: absolute path to entries of type page directory _(ex: '/home/project/assets')_
+- PUBLIC_DIR: absolute path to public folder _(ex: '/home/project/public')_
+- OUTPUT_DIR: folder name between public directory and page path _(ex: 'js')_
 
-Scripts which are in `src/(.*)Bundle/Resources/pages` folder are bundled into `web/bundles/$1/js`.
+### Work with WEBPACK_ENTRY environment variable
 
-__Bundle name is slugify like `bin/console assets:install` does.__
-
-_Example: `App/BlogBundle` => `app_blog`_
-
-## Work with WEBPACK_ENTRY environment variable
-
-The value of this variable is, by default, a relative path, from `app/Resources/pages/`.
+The value of this variable is, by default, a relative path, from `assets/pages/`.
 It can be a file or a folder.
-
-You can also work with absolute path and retrieve your file into `web/js/${path}`.
 
 *Examples:*
 
-- `WEBPACK_ENTRY="game" npm run dev` => _app/Resources/pages/game/*_
-- `WEBPACK_ENTRY="homepage.jsx" npm run dev` => _app/Resources/pages/homepage.jsx_
-- `WEBPACK_ENTRY="profile/index.jsx" npm run dev` => _app/Resources/pages/profile/index.jsx_
-- `WEBPACK_ENTRY="@AppBundle" npm run dev` => _src/AppBundle/Resources/pages/*_
-- `WEBPACK_ENTRY="@App/BlogBundle" npm run dev` => _src/App/BlogBundle/Resources/pages/*_
-- `WEBPACK_ENTRY="@App/BlogBundle/homepage.jsx" npm run dev` => _src/App/BlogBundle/Resources/pages/homepage.jsx_
-- `WEBPACK_ENTRY="@App/BlogBundle/article/view.jsx" npm run dev` => _src/App/BlogBundle/Resources/pages/article/view.jsx_
+- `WEBPACK_ENTRY="game" npm run dev` => _assets/pages/game/*_
+- `WEBPACK_ENTRY="homepage.jsx" npm run dev` => _assets/pages/homepage.jsx_
+- `WEBPACK_ENTRY="profile/index.jsx" npm run dev` => _assets/pages/profile/index.jsx_
 
-## Requirements
+### Requirements
 
-Webpack 2
-
-## Enjoy !
-
-Libre à vous de le modifier à votre convenance.
+Webpack 3
