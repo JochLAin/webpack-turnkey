@@ -17,7 +17,7 @@ You can override directory with environment variable:
 - `npm i -S git+https://git@github.com:JochLAin/webpack-symfony.git`
 - Update package.json scripts section with:
     - "dev": "webpack-symfony"
-    - "prod": "NODE_ENV="prod" webpack-symfony"
+    - "prod": "NODE_ENV=prod webpack-symfony"
 
 ### Work with WEBPACK_ENTRY environment variable
 
