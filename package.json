@@ -1,0 +1,49 @@
+{
+  "name": "webpack-symfony",
+  "version": "2.0.0",
+  "description": "Webpack configuration for Symfony project",
+  "main": "config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "bin": {
+    "webpack-symfony-config": "./config.js",
+    "webpack-symfony": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JochLAin/node-command-webpack-symfony.git"
+  },
+  "keywords": [
+    "node",
+    "command",
+    "webpack",
+    "symfony"
+  ],
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "css-loader": "^0.25.0",
+    "dotenv": "^4.0.0",
+    "file-loader": "^0.11.2",
+    "node-sass": "^4.6.1",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.1.1",
+    "sass-resources-loader": "^1.3.1",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.9"
+  },
+  "peerDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "author": "Jocelyn FAIHY <jocelyn@faihy.fr>",
+  "license": "SEE LICENSE IN LICENSE"
+}
