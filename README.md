@@ -26,9 +26,17 @@ It can be a file or a folder.
 
 *Examples:*
 
-- `WEBPACK_ENTRY="game" npm run dev` => _assets/pages/game/*_
-- `WEBPACK_ENTRY="homepage.jsx" npm run dev` => _assets/pages/homepage.jsx_
-- `WEBPACK_ENTRY="profile/index.jsx" npm run dev` => _assets/pages/profile/index.jsx_
+- `WEBPACK_ENTRY="game" npm run dev -- --watch` => _assets/pages/game/*_
+- `WEBPACK_ENTRY="homepage.jsx" npm run dev -- --watch` => _assets/pages/homepage.jsx_
+- `WEBPACK_ENTRY="profile/index.jsx" npm run dev -- --watch` => _assets/pages/profile/index.jsx_
+
+If first arguments is a string, it's interpreted as entry filename.
+Other arguments are passed to webpack
+
+*Examples:*
+- `npm run dev game -- --watch` => _assets/pages/game/*_
+- `npm run dev homepage.jsx -- --watch` => _assets/pages/homepage.jsx_
+- `npm run dev profile/index.jsx -- --watch` => _assets/pages/profile/index.jsx_
 
 ### Requirements
 
