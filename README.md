@@ -1,6 +1,6 @@
 # webpack-symfony
 
-## Webpack configuration file for Symfony project
+## Webpack configuration file for Symfony project - turnkey
 
 ### How it works
 
