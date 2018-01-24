@@ -19,7 +19,7 @@ You can override directory with environment variable:
 
 ### Install
 
-- `npm i -S git+https://git@github.com:JochLAin/webpack-symfony.git`
+- `npm i -S webpack-symfony`
 - Update package.json scripts section with:
     - "dev": "webpack-symfony"
     - "prod": "NODE_ENV="prod" webpack-symfony"
