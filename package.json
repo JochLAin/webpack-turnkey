@@ -1,6 +1,6 @@
 {
   "name": "webpack-symfony",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Webpack configuration for Symfony project - turnkey",
   "main": "config.js",
   "directories": {
