@@ -43,7 +43,7 @@ Other arguments are passed to webpack
 - `npm run dev homepage.jsx -- --watch` => _assets/pages/homepage.jsx_
 - `npm run dev profile/index.jsx -- --watch` => _assets/pages/profile/index.jsx_
 
-### Customization _(experimental)_
+### Customization
 
 Create your own `webpack.config.js` at the root of your project.
 
