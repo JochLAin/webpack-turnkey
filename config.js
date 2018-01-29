@@ -33,8 +33,7 @@ else {
         else entry = [entry];
     }
 
-    const scripts = entry.map(page => Object({
-        ...config,
+    const scripts = entry.map(page => Object.assign({}, config, {
         entry: page, 
         output: { 
             path: path.resolve(PUBLIC_DIR, OUTPUT_SUFFIX, path.relative(PAGE_DIR, path.parse(page).dir)), 
