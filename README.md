@@ -21,8 +21,8 @@ You can override directory with environment variable:
 
 - `npm i -S webpack-symfony`
 - Update package.json scripts section with:
-    - "dev": "webpack-symfony"
-    - "prod": "NODE_ENV="prod" webpack-symfony"
+    - "dev": "webpack-symfony" // Add '-d' argument to webpack command
+    - "prod": "NODE_ENV="prod" webpack-symfony" // Add '-p' argument to webpack command
 
 ### Work with WEBPACK_ENTRY environment variable
 
@@ -43,6 +43,48 @@ Other arguments are passed to webpack
 - `npm run dev homepage.jsx -- --watch` => _assets/pages/homepage.jsx_
 - `npm run dev profile/index.jsx -- --watch` => _assets/pages/profile/index.jsx_
 
+### Proposed configuration
+
+#### Loaders
+
+Files loaded and extensions permitted :
+
+For codes files :
+- .html
+- .js / .jsx
+- .css
+- .sass / .scss
+
+For images files :
+- .jpg / .jpeg
+- .png
+- .gif
+
+For fonts files :
+- .svg
+- .woff / .woff2
+- .ttf / .otf
+- .eot
+
+#### Aliases
+
+You can call specifics folders with aliases, there are :
+- @actions => `ASSET_DIR/actions`
+- @capsules => `ASSET_DIR/capsules`
+- @components => `ASSET_DIR/components`
+- @connecters => `ASSET_DIR/connecters`
+- @constants => `ASSET_DIR/constants`
+- @containers => `ASSET_DIR/containers`
+- @fonts => `ASSET_DIR/fonts`
+- @images => `ASSET_DIR/images`
+- @middlewares => `ASSET_DIR/middlewares`
+- @pages => `ASSET_DIR/pages`
+- @reducers => `ASSET_DIR/reducers`
+- @sounds => `ASSET_DIR/sounds`
+- @stylesheets => `ASSET_DIR/stylesheets`
+- @utils => `ASSET_DIR/utils`
+- @videos => `ASSET_DIR/videos`
+
 ### Customization
 
 Create your own `webpack.config.js` at the root of your project.
@@ -55,8 +97,10 @@ const config = require('webpack-symfony/config.js');
 module.exports = Object.assign({}, config);
 ```
 
-Run webpack command as normally.
+If you run `webpack-symfony` command with a `webpack.config.js` file, it will merge default config with your config.
 
 ### Requirements
 
-Webpack 3
+Webpack 3.10
+
+### Thanks
