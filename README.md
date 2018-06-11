@@ -1,4 +1,4 @@
-# webpack-symfony
+# webpack-turnkey
 
 ## Webpack configuration - turnkey
 
@@ -19,15 +19,15 @@ You can override directory with environment variable:
 
 ### Install
 
-- `npm i -S webpack-symfony`
+- `npm i -S webpack-turnkey`
 - Update package.json
 ```json
 {
     "name": "...",
     "version": "...",
     "scripts": {
-        "dev": "webpack-symfony", // Add '-d' argument to webpack command
-        "prod": "NODE_ENV=prod webpack-symfony", // Add '-p' argument to webpack command
+        "dev": "webpack-turnkey", // Add '-d' argument to webpack command
+        "prod": "NODE_ENV=prod webpack-turnkey", // Add '-p' argument to webpack command
     },
 }
 ```
@@ -105,12 +105,12 @@ Create your own `webpack.config.js` at the root of your project and run `webpack
 ```javascript
 'use strict';
 
-const config = require('webpack-symfony/config.js');
+const config = require('webpack-turnkey/config.js');
 
 module.exports = Object.assign({}, config);
 ```
 
-If you run `webpack-symfony` command with a `webpack-turnkey.config.js` file, it will merge default config with your config.
+If you run `webpack-turnkey` command with a `webpack-turnkey.config.js` file, it will merge default config with your config.
 ```javascript
 const default_config = {
     alias: {...},
