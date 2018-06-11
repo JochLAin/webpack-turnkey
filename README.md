@@ -1,6 +1,6 @@
 # webpack-symfony
 
-## Webpack configuration file for Symfony project - turnkey
+## Webpack configuration - turnkey
 
 ### How it works
 
@@ -20,28 +20,41 @@ You can override directory with environment variable:
 ### Install
 
 - `npm i -S webpack-symfony`
-- Update package.json scripts section with:
-    - "dev": "webpack-symfony" // Add '-d' argument to webpack command
-    - "prod": "NODE_ENV="prod" webpack-symfony" // Add '-p' argument to webpack command
+- Update package.json
+```json
+{
+    "name": "...",
+    "version": "...",
+    "scripts": {
+        "dev": "webpack-symfony", // Add '-d' argument to webpack command
+        "prod": "NODE_ENV=prod webpack-symfony", // Add '-p' argument to webpack command
+    },
+}
+```
 
-### Work with WEBPACK_ENTRY environment variable
+### Work with WEBPACK_TURNKEY_ENTRY environment variable
 
 The value of this variable is, by default, a relative path, from `assets/pages/`.
 It can be a file or a folder.
 
 *Examples:*
 
-- `WEBPACK_ENTRY="game" npm run dev` => _assets/pages/game/*_
-- `WEBPACK_ENTRY="homepage.jsx" npm run dev` => _assets/pages/homepage.jsx_
-- `WEBPACK_ENTRY="profile/index.jsx" npm run dev` => _assets/pages/profile/index.jsx_
+- `WEBPACK_TURNKEY_ENTRY="game" npm run dev` => _assets/pages/game/*_
+- `WEBPACK_TURNKEY_ENTRY="homepage.jsx" npm run dev` => _assets/pages/homepage.jsx_
+- `WEBPACK_TURNKEY_ENTRY="profile/index.jsx" npm run dev` => _assets/pages/profile/index.jsx_
 
-If first arguments is a string, it's interpreted as entry filename.
-Other arguments are passed to webpack
+Shortcut to argument(s) with no options related exists too :
 
 *Examples:*
-- `npm run dev game -- --watch` => _assets/pages/game/*_
-- `npm run dev homepage.jsx -- --watch` => _assets/pages/homepage.jsx_
-- `npm run dev profile/index.jsx -- --watch` => _assets/pages/profile/index.jsx_
+- `npm run dev -- game --watch` => _assets/pages/game/*_
+- `npm run dev -- homepage.jsx --watch` => _assets/pages/homepage.jsx_
+- `npm run dev -- profile/index.jsx --watch` => _assets/pages/profile/index.jsx_
+- `npm run dev -- game homepage.jsx profile/index.jsx --watch` => _assets/pages/profile/index.jsx_
+
+### ESLint
+
+> An option `--eslint` use it with : `npm run dev -- --eslint --watch`
+> It will add `.eslintrc.js` at the root of your project if not exists and compile with it.
 
 ### Proposed configuration
 
@@ -87,7 +100,7 @@ You can call specifics folders with aliases, there are :
 
 ### Customization
 
-Create your own `webpack.config.js` at the root of your project.
+Create your own `webpack.config.js` at the root of your project and run `webpack` command.
 
 ```javascript
 'use strict';
@@ -97,10 +110,17 @@ const config = require('webpack-symfony/config.js');
 module.exports = Object.assign({}, config);
 ```
 
-If you run `webpack-symfony` command with a `webpack.config.js` file, it will merge default config with your config.
+If you run `webpack-symfony` command with a `webpack-turnkey.config.js` file, it will merge default config with your config.
+```javascript
+const default_config = {
+    alias: {...},
+    rules: [{...}, {...}, ...],
+    extensions: [...]
+};
+```
 
 ### Requirements
 
-Webpack 3.10
+Webpack >= 3.10
 
 ### Thanks

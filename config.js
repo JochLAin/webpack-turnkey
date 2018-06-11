@@ -21,25 +21,39 @@ const config = {
     },
 };
 
-let entry = process.env.WEBPACK_ENTRY
-    ? path.resolve(PAGE_DIR, process.env.WEBPACK_ENTRY)
-    : browse(PAGE_DIR, -1, true, false)
-;
-
-if (!entry) module.exports = config;
-else {
-    if (!Array.isArray(entry)) {
-        if (fs.lstatSync(entry).isDirectory()) entry = browse(entry, -1, true, false);
-        else entry = [entry];
+let entry = null;
+if (process.env.WEBPACK_TURNKEY_ENTRY) {
+    if (process.env.WEBPACK_TURNKEY_ENTRY.indexOf(',') > -1) {
+        entry = process.env.WEBPACK_TURNKEY_ENTRY.split(',').map(filename => {
+            return path.resolve(PAGE_DIR, filename)
+        });
+    } else {
+        entry = path.resolve(PAGE_DIR, process.env.WEBPACK_TURNKEY_ENTRY);
     }
-
-    const scripts = entry.map(page => Object.assign({}, config, {
-        entry: page, 
-        output: { 
-            path: path.resolve(PUBLIC_DIR, OUTPUT_SUFFIX, path.relative(PAGE_DIR, path.parse(page).dir)), 
-            filename: `${path.parse(page).name}.js` 
-        },
-    }));
-
-    module.exports = scripts.length == 1 ? scripts[0] : scripts;
+} else {
+    entry = PAGE_DIR;
 }
+
+const _browse = (filename) => {
+    if (!fs.lstatSync(filename).isDirectory()) {
+        return [filename];
+    } else {
+        return browse(filename, -1, true, false);
+    }
+}
+
+if (Array.isArray(entry)) {
+    entry = entry.map(_browse).reduce((accu, item) => accu.concat(item), []);
+} else {
+    entry = _browse(entry);
+}
+
+const scripts = entry.map(page => Object.assign({}, config, {
+    entry: page, 
+    output: { 
+        path: path.resolve(PUBLIC_DIR, OUTPUT_SUFFIX, path.relative(PAGE_DIR, path.parse(page).dir)), 
+        filename: `${path.parse(page).name}.js` 
+    },
+}));
+
+module.exports = scripts.length == 1 ? scripts[0] : scripts;

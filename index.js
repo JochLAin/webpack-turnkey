@@ -2,17 +2,19 @@
 
 const { spawn } = require('child_process');
 const path = require('path');
+const argv = require('yargs').argv;
 
-const args = process.argv.slice(2);
-if (args[0] && args[0].indexOf('-') == -1) {
-    process.env.WEBPACK_ENTRY = args.splice(0, 1);
+if (argv._.length) process.env.WEBPACK_TURNKEY_ENTRY = argv._;
+if (argv.eslint) {
+    process.env.WEBPACK_TURNKEY_ESLINT = true;
 }
 
-const options = [
-    `--config=${path.resolve(__dirname, 'config.js')}`,
-    ...args,
-];
-
+const options = require('./lib/options')(argv);
 if (process.env.NODE_ENV == 'prod') options.push(`-p`);
 else options.push(`-d`);
-spawn('webpack', options, { stdio: 'inherit' });
+
+spawn(path.resolve('node_modules/.bin/webpack'), options, {
+    cwd: process.cwd(),
+    env: process.env,
+    stdio: 'inherit'
+});
