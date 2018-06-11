@@ -1,6 +1,6 @@
-# webpack-turnkey
-
 ## Webpack configuration - turnkey
+
+> Move to package [Webpack turnkey](https://www.npmjs.com/package/webpack-turnkey)
 
 ### How it works
 
@@ -112,7 +112,7 @@ module.exports = Object.assign({}, config);
 
 If you run `webpack-turnkey` command with a `webpack-turnkey.config.js` file, it will merge default config with your config.
 ```javascript
-const default_config = {
+module.exports = {
     alias: {...},
     rules: [{...}, {...}, ...],
     extensions: [...]
@@ -124,3 +124,5 @@ const default_config = {
 Webpack >= 3.10
 
 ### Thanks
+
+![Thanks BP](https://media1.giphy.com/media/yoJC2El7xJkYCadlWE/giphy.gif)
