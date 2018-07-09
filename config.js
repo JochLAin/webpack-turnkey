@@ -7,7 +7,7 @@ const CONFIG = require('./lib/constants/config');
 const DotEnvPlugin = require('./lib/plugins/dotenv');
 const browse = require('./lib/utils/file/browse');
 
-const config = {
+let config = {
     plugins: [
         new DotEnvPlugin([
             path.resolve('.env'), 
@@ -20,6 +20,11 @@ const config = {
         alias: CONFIG.alias, 
     },
 };
+delete CONFIG.rules;
+delete CONFIG.extensions;
+delete CONFIG.alias;
+
+Object.assign(config, CONFIG);
 
 let entry = null;
 if (process.env.WEBPACK_TURNKEY_ENTRY) {

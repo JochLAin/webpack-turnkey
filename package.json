@@ -1,6 +1,6 @@
 {
   "name": "webpack-turnkey",
-  "version": "1.1.2",
+  "version": "1.1.7",
   "description": "Webpack configuration project - turnkey",
   "main": "config.js",
   "directories": {
@@ -22,6 +22,7 @@
   ],
   "dependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",

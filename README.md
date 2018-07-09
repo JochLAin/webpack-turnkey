@@ -26,8 +26,8 @@ You can override directory with environment variable:
     "name": "...",
     "version": "...",
     "scripts": {
-        "dev": "webpack-turnkey", // Add '-d' argument to webpack command
-        "prod": "NODE_ENV=prod webpack-turnkey", // Add '-p' argument to webpack command
+        "dev": "webpack-turnkey", /* Add '-d' argument to webpack command */
+        "prod": "NODE_ENV=prod webpack-turnkey", /* Add '-p' argument to webpack command */
     },
 }
 ```
@@ -46,15 +46,26 @@ It can be a file or a folder.
 Shortcut to argument(s) with no options related exists too :
 
 *Examples:*
-- `npm run dev -- game --watch` => _assets/pages/game/*_
-- `npm run dev -- homepage.jsx --watch` => _assets/pages/homepage.jsx_
-- `npm run dev -- profile/index.jsx --watch` => _assets/pages/profile/index.jsx_
-- `npm run dev -- game homepage.jsx profile/index.jsx --watch` => _assets/pages/profile/index.jsx_
+- `npm run dev -- game` => _assets/pages/game/*_
+- `npm run dev -- homepage.jsx` => _assets/pages/homepage.jsx_
+- `npm run dev -- profile/index.jsx` => _assets/pages/profile/index.jsx_
+- `npm run dev -- game homepage.jsx profile/index.jsx` => _assets/pages/profile/index.jsx_
 
-### ESLint
+### Options
 
-> An option `--eslint` use it with : `npm run dev -- --eslint --watch`
+#### Sourcemap
+
+> An option `--sourcemap` use it with : `npm run dev -- --sourcemap`
+> It will set options to true for styles loaders
+
+#### ESLint
+
+> An option `--eslint` use it with : `npm run dev -- --eslint`
 > It will add `.eslintrc.js` at the root of your project if not exists and compile with it.
+
+#### Watch and other options
+
+> Other options like `--watch` are passed to webpack command
 
 ### Proposed configuration
 
