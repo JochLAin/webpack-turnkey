@@ -16,8 +16,8 @@ spawn('npm', ['i'], {
     }).once('exit', (code) => {
         if (code != 0) process.exit(code);
 
-        spawn('node', [
-            path.resolve('index.js'),
+        spawn('npx', [
+            'webpack-turnkey',
             '--eslint',
             '--sourcemap',
             '--input-dir=tests/assets',

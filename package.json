@@ -4,11 +4,12 @@
   "description": "Webpack configuration project - turnkey",
   "main": "config.js",
   "directories": {
+    "bin": "bin",
     "lib": "lib"
   },
   "bin": {
     "webpack-turnkey-config": "./config.js",
-    "webpack-turnkey": "./index.js"
+    "webpack-turnkey": "./bin/webpack-turnkey.js"
   },
   "scripts": {
     "test": "node ./tests/index.js"
@@ -23,6 +24,10 @@
     "webpack",
     "turnkey"
   ],
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",

@@ -3,7 +3,6 @@
 const { spawn } = require('child_process');
 const path = require('path');
 const argv = require('yargs').argv;
-const { exists } = require('./lib/utils/file');
 
 if (argv._.length) {
     process.env.WEBPACK_TURNKEY_ENTRY = argv._;
@@ -18,14 +17,11 @@ if (argv.sourmap) {
 }
 
 // Parse command options
-const options = require('./lib/options')(argv);
+const options = require('../lib/options')(argv);
 if (process.env.NODE_ENV == 'prod') options.push(`-p`);
 else options.push(`-d`);
 
-const webpack = exists(path.resolve('node_modules/.bin/webpack')) 
-    ? path.resolve('node_modules/.bin/webpack')
-    : 'webpack'
-spawn(webpack, options, {
+spawn('npx', ['webpack'].concat(options), {
     cwd: process.cwd(),
     env: process.env,
     stdio: 'inherit'
