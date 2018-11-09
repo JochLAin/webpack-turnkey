@@ -59,3 +59,8 @@ typings/
 
 # git folder
 .git
+
+# tests files
+/.eslintrc.js
+/package-lock.json
+/tests/public
