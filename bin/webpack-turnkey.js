@@ -1,23 +1,39 @@
 #!/usr/bin/env node
 
 const { spawn } = require('child_process');
-const path = require('path');
-const argv = require('yargs').argv;
 
-if (argv._.length) {
-    process.env.WEBPACK_TURNKEY_ENTRY = argv._;
+const program = require('commander');
+const path = require('path');
+const package = require(path.resolve(__dirname, '../package.json'));
+
+program
+    .usage('[options] <file...>')
+    .version(package.version, '-v, --version')
+    .option('--eslint', 'Enable ESLint')
+    .option('--sourcemap', 'Enable SourceMap')
+    .option('--volatile', 'Set input and output directory to current')
+    .allowUnknownOption()
+    .parse(process.argv)
+;
+
+if (program.args.length) {
+    process.env.WEBPACK_TURNKEY_ENTRY = program.args;
 }
-if (argv.eslint) {
+if (program.eslint) {
     process.env.WEBPACK_TURNKEY_ESLINT = true;
-    delete argv['eslint'];
 }
-if (argv.sourmap) {
+if (program.sourcemap) {
     process.env.WEBPACK_TURNKEY_SOURCEMAP = true;
-    delete argv['sourcemap'];
+}
+if (program.volatile) {
+    if (program.args.length) {
+        process.env.OUTPUT_DIR = process.cwd();
+        process.env.PAGE_DIR = process.cwd();
+    }
 }
 
 // Parse command options
-const options = require('../lib/options')(argv);
+const options = require('../lib/options').get();
 if (process.env.NODE_ENV == 'prod') options.push(`-p`);
 else options.push(`-d`);
 

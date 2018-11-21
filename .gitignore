@@ -62,5 +62,5 @@ typings/
 
 # tests files
 /.eslintrc.js
-/package-lock.json
+package-lock.json
 /tests/public

@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { OUTPUT_SUFFIX, PAGE_DIR, PUBLIC_DIR } = require('./lib/constants');
+const { OUTPUT_DIR, PAGE_DIR } = require('./lib/constants');
 const CONFIG = require('./lib/constants/config');
 const DotEnvPlugin = require('./lib/plugins/dotenv');
 const browse = require('./lib/utils/file/browse');
@@ -56,7 +56,7 @@ if (Array.isArray(entry)) {
 const scripts = entry.map(page => Object.assign({}, config, {
     entry: page, 
     output: { 
-        path: path.resolve(PUBLIC_DIR, OUTPUT_SUFFIX, path.relative(PAGE_DIR, path.parse(page).dir)), 
+        path: path.resolve(OUTPUT_DIR, path.relative(PAGE_DIR, path.parse(page).dir)), 
         filename: `${path.parse(page).name}.js` 
     },
 }));
