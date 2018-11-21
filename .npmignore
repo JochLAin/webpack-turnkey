@@ -59,4 +59,5 @@ typings/
 
 # tests files
 /.eslintrc.js
+/.jshintrc
 /tests

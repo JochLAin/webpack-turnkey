@@ -30,7 +30,7 @@ let entry = null;
 if (process.env.WEBPACK_TURNKEY_ENTRY) {
     if (process.env.WEBPACK_TURNKEY_ENTRY.indexOf(',') > -1) {
         entry = process.env.WEBPACK_TURNKEY_ENTRY.split(',').map(filename => {
-            return path.resolve(PAGE_DIR, filename)
+            return path.resolve(PAGE_DIR, filename);
         });
     } else {
         entry = path.resolve(PAGE_DIR, process.env.WEBPACK_TURNKEY_ENTRY);
@@ -45,7 +45,7 @@ const _browse = (filename) => {
     } else {
         return browse(filename, -1, true, false);
     }
-}
+};
 
 if (Array.isArray(entry)) {
     entry = entry.map(_browse).reduce((accu, item) => accu.concat(item), []);
@@ -61,4 +61,4 @@ const scripts = entry.map(page => Object.assign({}, config, {
     },
 }));
 
-module.exports = scripts.length == 1 ? scripts[0] : scripts;
+module.exports = scripts.length === 1 ? scripts[0] : scripts;
