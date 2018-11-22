@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { OUTPUT_DIR, PAGE_DIR } = require('./lib/constants');
+const { WEBPACK_TURNKEY_OUTPUT_DIR, WEBPACK_TURNKEY_PAGE_DIR } = require('./lib/constants');
 const CONFIG = require('./lib/constants/config');
 const DotEnvPlugin = require('./lib/plugins/dotenv');
 const browse = require('./lib/utils/file/browse');
@@ -30,13 +30,13 @@ let entry = null;
 if (process.env.WEBPACK_TURNKEY_ENTRY) {
     if (process.env.WEBPACK_TURNKEY_ENTRY.indexOf(',') > -1) {
         entry = process.env.WEBPACK_TURNKEY_ENTRY.split(',').map(filename => {
-            return path.resolve(PAGE_DIR, filename);
+            return path.resolve(WEBPACK_TURNKEY_PAGE_DIR, filename);
         });
     } else {
-        entry = path.resolve(PAGE_DIR, process.env.WEBPACK_TURNKEY_ENTRY);
+        entry = path.resolve(WEBPACK_TURNKEY_PAGE_DIR, process.env.WEBPACK_TURNKEY_ENTRY);
     }
 } else {
-    entry = PAGE_DIR;
+    entry = WEBPACK_TURNKEY_PAGE_DIR;
 }
 
 const _browse = (filename) => {
@@ -56,7 +56,7 @@ if (Array.isArray(entry)) {
 const scripts = entry.map(page => Object.assign({}, config, {
     entry: page, 
     output: { 
-        path: path.resolve(OUTPUT_DIR, path.relative(PAGE_DIR, path.parse(page).dir)), 
+        path: path.resolve(WEBPACK_TURNKEY_OUTPUT_DIR, path.relative(WEBPACK_TURNKEY_PAGE_DIR, path.parse(page).dir)), 
         filename: `${path.parse(page).name}.js` 
     },
 }));

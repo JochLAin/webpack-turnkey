@@ -27,12 +27,12 @@ if (program.sourcemap) {
     process.env.WEBPACK_TURNKEY_SOURCEMAP = true;
 }
 if (program.bundled) {
-    process.env.PROJECT_DIR = process.cwd();
+    process.env.WEBPACK_TURNKEY_PROJECT_DIR = process.cwd();
 }
 if (program.volatile) {
     if (program.args.length) {
-        process.env.OUTPUT_DIR = process.cwd();
-        process.env.PAGE_DIR = process.cwd();
+        process.env.WEBPACK_TURNKEY_OUTPUT_DIR = process.cwd();
+        process.env.WEBPACK_TURNKEY_PAGE_DIR = process.cwd();
     }
 }
 
