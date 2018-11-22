@@ -11,7 +11,8 @@ program
     .version(package.version, '-v, --version')
     .option('--eslint', 'Enable ESLint')
     .option('--sourcemap', 'Enable SourceMap')
-    .option('--volatile', 'Set input and output directory to current')
+    .option('--bundled', 'Set project directory to current working directory')
+    .option('--volatile', 'Set input and output directory to current working directory')
     .allowUnknownOption()
     .parse(process.argv)
 ;
@@ -24,6 +25,9 @@ if (program.eslint) {
 }
 if (program.sourcemap) {
     process.env.WEBPACK_TURNKEY_SOURCEMAP = true;
+}
+if (program.bundled) {
+    process.env.PROJECT_DIR = process.cwd();
 }
 if (program.volatile) {
     if (program.args.length) {
