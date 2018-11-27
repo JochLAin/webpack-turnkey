@@ -107,7 +107,9 @@ You can call specifics folders with aliases, there are :
 - @containers => `ASSET_DIR/containers`
 - @fonts => `ASSET_DIR/fonts`
 - @images => `ASSET_DIR/images`
+- @managers => `ASSET_DIR/managers`
 - @middlewares => `ASSET_DIR/middlewares`
+- @models => `ASSET_DIR/models`
 - @pages => `ASSET_DIR/pages`
 - @reducers => `ASSET_DIR/reducers`
 - @sounds => `ASSET_DIR/sounds`
