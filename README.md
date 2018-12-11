@@ -83,7 +83,7 @@ Shortcut to argument(s) with no options related exists too :
 > An option `--eslint` use it with : `npx webpack-turnkey --eslint`
 > It will add `.eslintrc.js` at the root of your project if not exists and compile with it.
 
-#### ESLint
+#### Bundled
 
 > An option `--bundled` use it with : `npx webpack-turnkey --bundled`
 > It will set the project directory to the current working directory
