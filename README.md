@@ -34,11 +34,13 @@ There are two ways to use it :
         "name": "...",
         "version": "...",
         "scripts": {
-            "dev": "webpack-turnkey", /* Add '-d' argument to webpack command */
-            "prod": "NODE_ENV=prod webpack-turnkey", /* Add '-p' argument to webpack command */
+            "dev": "webpack-turnkey",
+            "prod": "NODE_ENV=prod webpack-turnkey"
         },
     }
     ```
+
+By default the command add `-d` option, when environment variable `NODE_ENV` is equal to `prod` it will pass the `-p` option.
 
 ### Work with WEBPACK_TURNKEY_ENTRY environment variable
 
