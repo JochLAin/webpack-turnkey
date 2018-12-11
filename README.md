@@ -33,6 +33,24 @@ You can override directory with environment variable:
 }
 ```
 
+### Usage
+
+There are two ways to use it :
+
+- With [npx](https://www.npmjs.com/package/npx)  
+    `npx webpack-turnkey`
+- With package scripts
+    ```json
+    {
+        "name": "...",
+        "version": "...",
+        "scripts": {
+            "dev": "webpack-turnkey", /* Add '-d' argument to webpack command */
+            "prod": "NODE_ENV=prod webpack-turnkey", /* Add '-p' argument to webpack command */
+        },
+    }
+    ```
+
 ### Work with WEBPACK_TURNKEY_ENTRY environment variable
 
 The value of this variable is, by default, a relative path, from `assets/pages/`.
@@ -40,30 +58,39 @@ It can be a file or a folder.
 
 *Examples:*
 
-- `WEBPACK_TURNKEY_ENTRY="game" npm run dev` => _assets/pages/game/*_
-- `WEBPACK_TURNKEY_ENTRY="homepage.jsx" npm run dev` => _assets/pages/homepage.jsx_
-- `WEBPACK_TURNKEY_ENTRY="profile/index.jsx" npm run dev` => _assets/pages/profile/index.jsx_
+- `WEBPACK_TURNKEY_ENTRY="game" npx webpack-turnkey` => _assets/pages/game/*_
+- `WEBPACK_TURNKEY_ENTRY="homepage.jsx" npx webpack-turnkey` => _assets/pages/homepage.jsx_
+- `WEBPACK_TURNKEY_ENTRY="profile/index.jsx" npx webpack-turnkey` => _assets/pages/profile/index.jsx_
 
 Shortcut to argument(s) with no options related exists too :
 
 *Examples:*
 
-- `npm run dev -- game` => _assets/pages/game/*_
-- `npm run dev -- homepage.jsx` => _assets/pages/homepage.jsx_
-- `npm run dev -- profile/index.jsx` => _assets/pages/profile/index.jsx_
-- `npm run dev -- game homepage.jsx profile/index.jsx` => _assets/pages/profile/index.jsx_
+- `npx webpack-turnkey game` => _assets/pages/game/*_
+- `npx webpack-turnkey homepage.jsx` => _assets/pages/homepage.jsx_
+- `npx webpack-turnkey profile/index.jsx` => _assets/pages/profile/index.jsx_
+- `npx webpack-turnkey game homepage.jsx profile/index.jsx` => _assets/pages/profile/index.jsx_
 
 ### Options
 
 #### Sourcemap
 
-> An option `--sourcemap` use it with : `npm run dev -- --sourcemap`
+> An option `--sourcemap` use it with : `npx webpack-turnkey --sourcemap`
 > It will set options to true for styles loaders
 
 #### ESLint
 
-> An option `--eslint` use it with : `npm run dev -- --eslint`
+> An option `--eslint` use it with : `npx webpack-turnkey --eslint`
 > It will add `.eslintrc.js` at the root of your project if not exists and compile with it.
+
+#### ESLint
+
+> An option `--bundled` use it with : `npx webpack-turnkey --bundled`
+> It will set the project directory to the current working directory
+> 
+> Usefull for Symfony <= 3 projects & assetic  
+> `cd src/MyBundle/Ressources && npx webpack-turnkey --bundled`  
+> It will compile files in **`MyBundle/Resources/assets/pages`** to **`MyBundle/Resources/public/js`**
 
 #### Watch and other options
 
@@ -78,7 +105,7 @@ Files loaded and extensions permitted :
 For codes files :
 
 - .html
-- .js / .jsx
+- .js / .jsx / .mjs
 - .css
 - .sass / .scss
 
