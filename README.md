@@ -8,30 +8,19 @@ Scripts which are in `assets/pages` folder are bundled into `public/js`.
 
 You can override directory with environment variable:
 
-- WEBPACK_TURNKEY_PROJECT_DIR: absolute path to the project directory (process.cwd) _(ex: '/home/project')_
-- WEBPACK_TURNKEY_ASSET_SUFFIX: relative path to PROJECT_DIR (process.cwd) _(ex: 'assets')_
-- WEBPACK_TURNKEY_ASSET_DIR: absolute path to entries of type asset directory _(ex: '/home/project/assets')_
-- WEBPACK_TURNKEY_PAGE_SUFFIX: relative path to ASSET_DIR _(ex: 'pages')_
-- WEBPACK_TURNKEY_PAGE_DIR: absolute path to entries of type page directory _(ex: '/home/project/assets/pages')_
-- WEBPACK_TURNKEY_PUBLIC_SUFFIX: relative path to PROJECT_DIR (process.cwd) _(ex: 'public')_
-- WEBPACK_TURNKEY_PUBLIC_DIR: absolute path to public folder _(ex: '/home/project/public')_
-- WEBPACK_TURNKEY_OUTPUT_SUFFIX: folder name between public directory and page path _(ex: 'js')_
+- **WEBPACK_TURNKEY_PROJECT_DIR**: absolute path to the project directory (process.cwd) _(ex: '/home/project')_
+- **WEBPACK_TURNKEY_ASSET_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'assets')_
+- **WEBPACK_TURNKEY_ASSET_DIR**: absolute path to entries of type asset directory _(ex: '/home/project/assets')_
+- **WEBPACK_TURNKEY_PAGE_SUFFIX**: relative path to ASSET_DIR _(ex: 'pages')_
+- **WEBPACK_TURNKEY_PAGE_DIR**: absolute path to entries of type page directory _(ex: '/home/project/assets/pages')_
+- **WEBPACK_TURNKEY_PUBLIC_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'public')_
+- **WEBPACK_TURNKEY_PUBLIC_DIR**: absolute path to public folder _(ex: '/home/project/public')_
+- **WEBPACK_TURNKEY_OUTPUT_SUFFIX**: folder name between public directory and page path _(ex: 'js')_
 
 ### Install
 
 - `npm i -S webpack-turnkey`
 - Update package.json
-
-```json
-{
-    "name": "...",
-    "version": "...",
-    "scripts": {
-        "dev": "webpack-turnkey", /* Add '-d' argument to webpack command */
-        "prod": "NODE_ENV=prod webpack-turnkey", /* Add '-p' argument to webpack command */
-    },
-}
-```
 
 ### Usage
 
