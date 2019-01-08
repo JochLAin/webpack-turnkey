@@ -1,0 +1,321 @@
+$directions: ('top', 'right', 'bottom', 'left');
+$custom-file-text: (
+  en: "Browse",
+  es: "Elegir",
+  fr: "Parcourir",
+);
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/print";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/utilities";
+@import './color';
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                          //
+//                                    FIX                                   //
+//                                                                          //
+//////////////////////////////////////////////////////////////////////////////
+.custom-control {
+    user-select: none;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                          //
+//                                  HELPER                                  //
+//                                                                          //
+//////////////////////////////////////////////////////////////////////////////
+
+.cursor-pointer { cursor: pointer !important; }
+.select-none {
+    user-select: none !important;
+    -ms-user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-select: none !important;
+}
+.transparency { opacity: 0.5 !important; }
+
+/////////////////////////////////////////////////////////////////////////////
+//                              Border Helper                              //
+/////////////////////////////////////////////////////////////////////////////
+
+.border-1 { border-width: $spacer * .25 !important; }
+.border-2 { border-width: $spacer * .5 !important; }
+.border-3 { border-width: $spacer !important; }
+.border-4 { border-width: $spacer * 1.5 !important; }
+.border-5 { border-width: $spacer * 3 !important; }
+
+@each $direction in $directions {
+    .border-#{$direction}-only {
+        border: none !important;
+        border-#{$direction}: 1px solid $border-color !important;
+    }
+    .border-#{$direction}-1 {
+        border-#{$direction}-width: $spacer * .25 !important;
+    }
+    .border-#{$direction}-2 {
+        border-#{$direction}-width: $spacer * .5 !important;
+    }
+    .border-#{$direction}-3 {
+        border-#{$direction}-width: $spacer !important;
+    }
+    .border-#{$direction}-4 {
+        border-#{$direction}-width: $spacer * 1.5 !important;
+    }
+    .border-#{$direction}-5 {
+        border-#{$direction}-width: $spacer * 3 !important;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//                              Button Helper                              //
+/////////////////////////////////////////////////////////////////////////////
+
+.btn {
+    &.btn-action {
+        border-radius: 50%;
+        height: 4rem;
+        margin: 1rem;
+        width: 4rem;
+
+        &.btn-sm {
+            font-size: 1.2rem;
+            height: 3rem;
+            margin: 1.5rem .5rem;
+            width: 3rem;
+        }
+    }
+    &.btn-xs {
+        padding: 0 .5rem;
+        font-size: .6rem;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//                               Card Helper                                //
+//////////////////////////////////////////////////////////////////////////////
+
+.card-deck {
+    .card {
+        flex: 1 0 calc(33.33333% - 2 * 24px);
+        max-width: calc(33.33333% - 2 * 24px);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .card-deck {
+        .card {
+            flex: 1 0 calc(50% - 2 * 24px);
+            max-width: calc(50% - 2 * 24px);
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .card-deck {
+        .card {
+            flex: 1 0 calc(100% - 2 * 24px);
+            max-width: calc(100% - 2 * 24px);
+        }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .card-deck {
+        .card {
+            flex: 1 0 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//                               Color Helper                               //
+//////////////////////////////////////////////////////////////////////////////
+
+@function color-level($color: "#FFF", $level: 0) {
+    $color-base: if($level > 0, $black, $white);
+    $level: abs($level);
+
+    @return mix($color-base, $color, $level * $theme-color-interval);
+}
+
+@each $color, $value in $theme-colors {
+    .bg-#{$color}{
+        &.text-yiq {
+            color: color-yiq($value);
+        }
+        &.border-yiq {
+            border-color: transparentize(color-yiq($value), 0.8);
+        }
+    }
+}
+
+@each $color, $value in $material-colors {
+    @include list-group-item-variant($color, color-level($value, -9), color-level($value, 6));
+    @include table-row-variant($color, color-level($value, -9));
+    .alert-#{$color} {
+        @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
+    }
+    .badge-#{$color} {
+        @include badge-variant($value);
+    }
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+    }
+    .btn-outline-#{$color} {
+        @include button-outline-variant($value);
+    }
+    .placeholder-#{$color} {
+        &::placeholder {
+            color: rgba($value, .7);
+        }
+    }
+}
+
+@each $color, $value in $material-shades {
+    @include bg-variant(".bg-#{$color}", $value);
+    @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
+    @include text-emphasis-variant(".text-#{$color}", $value);
+    .border-#{$color} {
+        border-color: $value !important;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//                               Image Helper                               //
+//////////////////////////////////////////////////////////////////////////////
+
+.img-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+    img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: auto;
+        width: calc(100% + 1px);
+        transform: translate(-50%, -50%);
+
+        &.crop-by-height {
+            height: 100%;
+            min-height: 100%;
+            min-width: 100%;
+            width: auto;
+        }
+        &.crop-by-width {
+            height: auto;
+            min-height: 100%;
+            min-width: 100%;
+            width: 100%;
+        }
+        &.wrap-by-width {
+            height: auto;
+            width: calc(100% + 1px);
+        }
+        &.wrap-by-height {
+            height: 100%;
+            width: auto;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//                               Modal Helper                               //
+//////////////////////////////////////////////////////////////////////////////
+
+.modal {
+    &.modal-overlay {
+        .modal-dialog {
+            margin: 0;
+            padding: 0 .5rem;
+            max-width: none;
+            width: 100vw;
+
+            .modal-content {
+                height: 100%;
+                margin: .5rem 0;
+                min-height: calc(100vh - 1rem);
+
+                .modal-body {
+                    height: 100%;
+                }
+            }
+        }
+        ~ .modal-backdrop {
+            background-color: $light;
+            opacity: .8;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//                             Position Helper                             //
+/////////////////////////////////////////////////////////////////////////////
+
+@each $direction in $directions {
+    @each $size, $length in $spacers {
+        .#{$direction}-#{$size} {
+            #{$direction}: $length !important;
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//                               Size Helper                               //
+/////////////////////////////////////////////////////////////////////////////
+@each $size, $length in $spacers {
+    .h-#{$size} {
+        height: $length !important;
+    }
+}
+.h-100vh { height: 100vh !important; }
+.mh-100vh { min-height: 100vh !important; }
+.Mh-100vh { max-height: 100vh !important; }
+
+.h-100vh--headerless { height: calc(100vh - #{$navbar-height} - 1px) !important; }
+.mh-100vh--headerless { min-height: calc(100vh - #{$navbar-height} - 1px) !important; }
+.Mh-100vh--headerless { max-height: calc(100vh - #{$navbar-height} - 1px) !important; }
+
+@each $size, $length in $spacers {
+    .w-#{$size} {
+        width: $length !important;
+    }
+}
+.w-100vw { width: 100vw !important; }
+.mw-100vw { min-width: 100vw !important; }
+.Mw-100vw { max-width: 100vw !important; }

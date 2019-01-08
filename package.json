@@ -2,7 +2,7 @@
   "name": "webpack-turnkey",
   "version": "1.5.6",
   "description": "Webpack configuration project - turnkey",
-  "main": "config.js",
+  "main": "index.js",
   "directories": {
     "bin": "bin",
     "lib": "lib"
@@ -12,7 +12,7 @@
     "webpack-turnkey": "./bin/webpack-turnkey.js"
   },
   "scripts": {
-    "test": "node ./tests/index.js"
+    "test": "echo \"Hello World\""
   },
   "repository": {
     "type": "git",

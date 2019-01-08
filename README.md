@@ -16,6 +16,7 @@ You can override directory with environment variable:
 - **WEBPACK_TURNKEY_PUBLIC_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'public')_
 - **WEBPACK_TURNKEY_PUBLIC_DIR**: absolute path to public folder _(ex: '/home/project/public')_
 - **WEBPACK_TURNKEY_OUTPUT_SUFFIX**: folder name between public directory and page path _(ex: 'js')_
+- **WEBPACK_TURNKEY_OUTPUT_DIR**: absolute path to output directory _(ex: '/home/project/public/js')_
 
 ### Install
 
@@ -142,9 +143,9 @@ Create your own `webpack.config.js` at the root of your project and run `webpack
 ```javascript
 'use strict';
 
-const config = require('webpack-turnkey/config.js');
+const wpt = require('webpack-turnkey');
 
-module.exports = Object.assign({}, config);
+module.exports = Object.assign({}, wpt.config);
 ```
 
 If you run `webpack-turnkey` command with a `webpack-turnkey.config.js` file, it will merge default config with your config.
@@ -156,6 +157,41 @@ module.exports = {
     extensions: [...]
 };
 ```
+
+### Generation
+
+To generate template for start coding, two format are available:
+
+- **minimal**:
+  - Create asset and public folders
+  - Add folders in `ASSET_DIR`
+    - _components_
+    - _stylesheets_
+- **starter**:
+  - Create asset and public folders
+  - Add folders in `ASSET_DIR`
+    - _components_
+    - _constants_
+    - _managers_
+    - _models_
+    - _stylesheets_
+    - _utils_
+  - Install modules
+    - @fortawesome/fontawesome
+    - @fortawesome/fontawesome-free
+    - @fortawesome/react-fontawesome
+    - bootstrap
+    - classnames
+    - jquery
+    - popper.js
+    - react
+    - react-dom
+    - toast
+  - Create files
+    - components/super.jsx : An improved component (can be deleted if not used)
+    - middlewares/event.js : Contains an prevent middleware
+    - **pages/style.js** : Instanciate boostrap, fontawesome, jquery, toastr
+    - stylesheets/* : Import style with helpers
 
 ### Requirements
 
