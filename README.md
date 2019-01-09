@@ -4,19 +4,7 @@
 
 ### How it works
 
-Scripts which are in `assets/pages` folder are bundled into `public/js`.
-
-You can override directory with environment variable:
-
-- **WEBPACK_TURNKEY_PROJECT_DIR**: absolute path to the project directory (process.cwd) _(ex: '/home/project')_
-- **WEBPACK_TURNKEY_ASSET_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'assets')_
-- **WEBPACK_TURNKEY_ASSET_DIR**: absolute path to entries of type asset directory _(ex: '/home/project/assets')_
-- **WEBPACK_TURNKEY_PAGE_SUFFIX**: relative path to ASSET_DIR _(ex: 'pages')_
-- **WEBPACK_TURNKEY_PAGE_DIR**: absolute path to entries of type page directory _(ex: '/home/project/assets/pages')_
-- **WEBPACK_TURNKEY_PUBLIC_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'public')_
-- **WEBPACK_TURNKEY_PUBLIC_DIR**: absolute path to public folder _(ex: '/home/project/public')_
-- **WEBPACK_TURNKEY_OUTPUT_SUFFIX**: folder name between public directory and page path _(ex: 'js')_
-- **WEBPACK_TURNKEY_OUTPUT_DIR**: absolute path to output directory _(ex: '/home/project/public/js')_
+Scripts which are in **assets/pages** folder are bundled into **public/js** as default.
 
 ### Install
 
@@ -41,11 +29,11 @@ There are two ways to use it :
     }
     ```
 
-By default the command add `-d` option, when environment variable `NODE_ENV` is equal to `prod` it will pass the `-p` option.
+By default the command add `-d` option, when environment variable **NODE_ENV** is equal to **prod** it will pass the `-p` option.
 
 ### Work with WEBPACK_TURNKEY_ENTRY environment variable
 
-The value of this variable is, by default, a relative path, from `assets/pages/`.
+The value of this variable is, by default, a relative path, from **assets/pages/**.
 It can be a file or a folder.
 
 *Examples:*
@@ -62,6 +50,20 @@ Shortcut to argument(s) with no options related exists too :
 - `npx webpack-turnkey homepage.jsx` => _assets/pages/homepage.jsx_
 - `npx webpack-turnkey profile/index.jsx` => _assets/pages/profile/index.jsx_
 - `npx webpack-turnkey game homepage.jsx profile/index.jsx` => _assets/pages/profile/index.jsx_
+
+### Override directories
+
+You can override directory with environment variable:
+
+- **WEBPACK_TURNKEY_PROJECT_DIR**: absolute path to the project directory (process.cwd) _(ex: '/home/project')_
+- **WEBPACK_TURNKEY_ASSET_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'assets')_
+- **WEBPACK_TURNKEY_ASSET_DIR**: absolute path to entries of type asset directory _(ex: '/home/project/assets')_
+- **WEBPACK_TURNKEY_PAGE_SUFFIX**: relative path to ASSET_DIR _(ex: 'pages')_
+- **WEBPACK_TURNKEY_PAGE_DIR**: absolute path to entries of type page directory _(ex: '/home/project/assets/pages')_
+- **WEBPACK_TURNKEY_PUBLIC_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'public')_
+- **WEBPACK_TURNKEY_PUBLIC_DIR**: absolute path to public folder _(ex: '/home/project/public')_
+- **WEBPACK_TURNKEY_OUTPUT_SUFFIX**: folder name between public directory and page path _(ex: 'js')_
+- **WEBPACK_TURNKEY_OUTPUT_DIR**: absolute path to output directory _(ex: '/home/project/public/js')_
 
 ### Options
 
@@ -118,27 +120,27 @@ For fonts files :
 
 You can call specifics folders with aliases, there are :
 
-- @actions => `ASSET_DIR/actions`
-- @capsules => `ASSET_DIR/capsules`
-- @components => `ASSET_DIR/components`
-- @connecters => `ASSET_DIR/connecters`
-- @constants => `ASSET_DIR/constants`
-- @containers => `ASSET_DIR/containers`
-- @fonts => `ASSET_DIR/fonts`
-- @images => `ASSET_DIR/images`
-- @managers => `ASSET_DIR/managers`
-- @middlewares => `ASSET_DIR/middlewares`
-- @models => `ASSET_DIR/models`
-- @pages => `ASSET_DIR/pages`
-- @reducers => `ASSET_DIR/reducers`
-- @sounds => `ASSET_DIR/sounds`
-- @stylesheets => `ASSET_DIR/stylesheets`
-- @utils => `ASSET_DIR/utils`
-- @videos => `ASSET_DIR/videos`
+- @actions => *ASSET_DIR/actions*
+- @capsules => *ASSET_DIR/capsules*
+- @components => *ASSET_DIR/components*
+- @connecters => *ASSET_DIR/connecters*
+- @constants => *ASSET_DIR/constants*
+- @containers => *ASSET_DIR/containers*
+- @fonts => *ASSET_DIR/fonts*
+- @images => *ASSET_DIR/images*
+- @managers => *ASSET_DIR/managers*
+- @middlewares => *ASSET_DIR/middlewares*
+- @models => *ASSET_DIR/models*
+- @pages => *ASSET_DIR/pages*
+- @reducers => *ASSET_DIR/reducers*
+- @sounds => *ASSET_DIR/sounds*
+- @stylesheets => *ASSET_DIR/stylesheets*
+- @utils => *ASSET_DIR/utils*
+- @videos => *ASSET_DIR/videos*
 
 ### Customization
 
-Create your own `webpack.config.js` at the root of your project and run `webpack` command.
+Create your own **webpack.config.js** at the root of your project and run `webpack` command.
 
 ```javascript
 'use strict';
@@ -148,7 +150,7 @@ const wpt = require('webpack-turnkey');
 module.exports = Object.assign({}, wpt.config);
 ```
 
-If you run `webpack-turnkey` command with a `webpack-turnkey.config.js` file, it will merge default config with your config.
+If you run `webpack-turnkey` command with a *webpack-turnkey.config.js* file, it will merge default config with your config.
 
 ```javascript
 module.exports = {
@@ -160,16 +162,18 @@ module.exports = {
 
 ### Generation
 
+`npx webpack-turnkey --generate <format>`
+
 To generate template for start coding, two format are available:
 
 - **minimal**:
   - Create asset and public folders
-  - Add folders in `ASSET_DIR`
+  - Add folders in *ASSET_DIR*
     - _components_
     - _stylesheets_
 - **starter**:
   - Create asset and public folders
-  - Add folders in `ASSET_DIR`
+  - Add folders in *ASSET_DIR*
     - _components_
     - _constants_
     - _managers_
@@ -191,7 +195,7 @@ To generate template for start coding, two format are available:
     - components/super.jsx : An improved component (can be deleted if not used)
     - middlewares/event.js : Contains an prevent middleware
     - **pages/style.js** : Instanciate boostrap, fontawesome, jquery, toastr
-    - stylesheets/* : Import style with helpers
+    - **stylesheets/\*** : Import style with helpers
 
 ### Requirements
 
