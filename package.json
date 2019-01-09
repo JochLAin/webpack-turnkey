@@ -1,6 +1,6 @@
 {
   "name": "webpack-turnkey",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Webpack configuration project - turnkey",
   "main": "index.js",
   "directories": {
