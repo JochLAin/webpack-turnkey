@@ -56,6 +56,8 @@ Shortcut to argument(s) with no options related exists too :
 - `npx webpack-turnkey profile/index.jsx`
   - => _assets/pages/profile/index.jsx_
 - `npx webpack-turnkey game homepage.jsx profile/index.jsx`
+  - => _assets/pages/game/*_
+  - => _assets/pages/homepage.jsx_
   - => _assets/pages/profile/index.jsx_
 
 ### Override directories
