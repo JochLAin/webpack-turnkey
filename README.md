@@ -38,32 +38,57 @@ It can be a file or a folder.
 
 *Examples:*
 
-- `WEBPACK_TURNKEY_ENTRY="game" npx webpack-turnkey` => _assets/pages/game/*_
-- `WEBPACK_TURNKEY_ENTRY="homepage.jsx" npx webpack-turnkey` => _assets/pages/homepage.jsx_
-- `WEBPACK_TURNKEY_ENTRY="profile/index.jsx" npx webpack-turnkey` => _assets/pages/profile/index.jsx_
+- `WEBPACK_TURNKEY_ENTRY="game" npx webpack-turnkey`
+  - => _assets/pages/game/*_
+- `WEBPACK_TURNKEY_ENTRY="homepage.jsx" npx webpack-turnkey`
+  - => _assets/pages/homepage.jsx_
+- `WEBPACK_TURNKEY_ENTRY="profile/index.jsx" npx webpack-turnkey`
+  - => _assets/pages/profile/index.jsx_
 
 Shortcut to argument(s) with no options related exists too :
 
 *Examples:*
 
-- `npx webpack-turnkey game` => _assets/pages/game/*_
-- `npx webpack-turnkey homepage.jsx` => _assets/pages/homepage.jsx_
-- `npx webpack-turnkey profile/index.jsx` => _assets/pages/profile/index.jsx_
-- `npx webpack-turnkey game homepage.jsx profile/index.jsx` => _assets/pages/profile/index.jsx_
+- `npx webpack-turnkey game`
+  - => _assets/pages/game/*_
+- `npx webpack-turnkey homepage.jsx`
+  - => _assets/pages/homepage.jsx_
+- `npx webpack-turnkey profile/index.jsx`
+  - => _assets/pages/profile/index.jsx_
+- `npx webpack-turnkey game homepage.jsx profile/index.jsx`
+  - => _assets/pages/profile/index.jsx_
 
 ### Override directories
 
 You can override directory with environment variable:
 
-- **WEBPACK_TURNKEY_PROJECT_DIR**: absolute path to the project directory (process.cwd) _(ex: '/home/project')_
-- **WEBPACK_TURNKEY_ASSET_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'assets')_
-- **WEBPACK_TURNKEY_ASSET_DIR**: absolute path to entries of type asset directory _(ex: '/home/project/assets')_
-- **WEBPACK_TURNKEY_PAGE_SUFFIX**: relative path to ASSET_DIR _(ex: 'pages')_
-- **WEBPACK_TURNKEY_PAGE_DIR**: absolute path to entries of type page directory _(ex: '/home/project/assets/pages')_
-- **WEBPACK_TURNKEY_PUBLIC_SUFFIX**: relative path to PROJECT_DIR (process.cwd) _(ex: 'public')_
-- **WEBPACK_TURNKEY_PUBLIC_DIR**: absolute path to public folder _(ex: '/home/project/public')_
-- **WEBPACK_TURNKEY_OUTPUT_SUFFIX**: folder name between public directory and page path _(ex: 'js')_
-- **WEBPACK_TURNKEY_OUTPUT_DIR**: absolute path to output directory _(ex: '/home/project/public/js')_
+- **WEBPACK_TURNKEY_PROJECT_DIR**:
+  - absolute path to the project directory (process.cwd)
+  - _(ex: '/home/project')_
+- **WEBPACK_TURNKEY_ASSET_SUFFIX**:
+  - relative path to PROJECT_DIR (process.cwd)
+  - _(ex: 'assets')_
+- **WEBPACK_TURNKEY_ASSET_DIR**:
+  - absolute path to entries of type asset directory
+  - _(ex: '/home/project/assets')_
+- **WEBPACK_TURNKEY_PAGE_SUFFIX**:
+  - relative path to ASSET_DIR
+  - _(ex: 'pages')_
+- **WEBPACK_TURNKEY_PAGE_DIR**:
+  - absolute path to entries of type page directory
+  - _(ex: '/home/project/assets/pages')_
+- **WEBPACK_TURNKEY_PUBLIC_SUFFIX**:
+  - relative path to PROJECT_DIR (process.cwd)
+  - _(ex: 'public')_
+- **WEBPACK_TURNKEY_PUBLIC_DIR**:
+  - absolute path to public folder
+  - _(ex: '/home/project/public')_
+- **WEBPACK_TURNKEY_OUTPUT_SUFFIX**:
+  - folder name between public directory and page path
+  - _(ex: 'js')_
+- **WEBPACK_TURNKEY_OUTPUT_DIR**:
+  - absolute path to output directory
+  - _(ex: '/home/project/public/js')_
 
 ### Options
 
