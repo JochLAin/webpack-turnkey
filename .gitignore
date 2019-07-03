@@ -1,3 +1,5 @@
+.idea
+
 # Logs
 logs
 *.log
@@ -63,4 +65,4 @@ typings/
 # tests files
 /.eslintrc.js
 package-lock.json
-/tests/public.idea
+/tests/public
