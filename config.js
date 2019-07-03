@@ -4,16 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const { WEBPACK_TURNKEY_OUTPUT_DIR, WEBPACK_TURNKEY_PAGE_DIR } = require('./lib/constants');
 const CONFIG = require('./lib/constants/config');
-const DotEnvPlugin = require('./lib/plugins/dotenv');
 const browse = require('./lib/utils/file/browse');
 
 let config = {
-    plugins: [
-        new DotEnvPlugin([
-            path.resolve('.env'), 
-            path.resolve('.entity.env')
-        ]),
-    ],
+    plugins: CONFIG.plugins,
     module: { rules: CONFIG.rules },
     resolve: {
         extensions: CONFIG.extensions,
