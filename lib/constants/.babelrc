@@ -1,5 +1,8 @@
 {
-    "presets": ["@babel/env", "@babel/react"],
+    "presets": [
+        ["@babel/preset-env", { "useBuiltIns": true }],
+        "@babel/preset-react"
+    ],
     "plugins": [
         // Stage 0
         "@babel/plugin-proposal-function-bind",
