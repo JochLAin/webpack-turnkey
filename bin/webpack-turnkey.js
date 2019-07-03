@@ -43,7 +43,7 @@ if (!program.generate) {
     const options = require('../lib/options').get();
     if (process.env.NODE_ENV == 'prod') options.push(`-p`);
     else options.push(`-d`);
-    
+
     spawn('npx', ['webpack'].concat(options), {
         cwd: process.cwd(),
         env: process.env,
